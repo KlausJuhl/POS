@@ -24,7 +24,9 @@ namespace POS
 
         private void btn_OK_Click(object sender, EventArgs e)
         {
-            if (txt_Password.Text == "4432")
+            string Exitcode = System.Configuration.ConfigurationManager.AppSettings["Exitcode"]; 
+
+            if (txt_Password.Text == Exitcode)
             {
                 // The password is ok.
                 txt_Password.Clear();

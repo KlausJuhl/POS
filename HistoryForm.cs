@@ -20,8 +20,16 @@ namespace POS
 
         private void HistoryForm_Load(object sender, EventArgs e)
         {
-            dgv_POSTransaction.DataSource = getPOSTransaction();
-            dgv_POSTransaction.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            try
+            {
+                dgv_POSTransaction.DataSource = getPOSTransaction();
+                dgv_POSTransaction.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dgv_POSTransaction.Columns[4].DefaultCellStyle.Format = "0.00##";
+                dgv_POSTransaction.Columns[5].DefaultCellStyle.Format = "0.00##";
+            }
+            catch 
+            { 
+            }
 
         }
 
@@ -31,23 +39,29 @@ namespace POS
 
             string connetionString = System.Configuration.ConfigurationManager.ConnectionStrings["SelfServicePOS"].ConnectionString;
 
-            using (SqlConnection con = new SqlConnection(connetionString))
+            try
             {
-                string SelectTxt = "SELECT TOP 100 POSTimestamp as DatoTid, CustomerNumber as Medlemsnummer, Product.ProductName, Quantity as Antal, UnitNetPrice as Pris, Quantity* UnitNetPrice as Total FROM POSTransaction INNER JOIN Product ON Product.ProductNumber = POSTransaction.ProductNumber";
-
-                if (txt_Customer.Text != "")
-                    SelectTxt = SelectTxt + " WHERE CustomerNumber=" + txt_Customer.Text;
-                SelectTxt = SelectTxt + "  ORDER BY POSTransId Desc";
-
-                using (SqlCommand cmd = new SqlCommand(SelectTxt, con))
+                using (SqlConnection con = new SqlConnection(connetionString))
                 {
-                    con.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    dt.Load(dr);
-                    con.Close();    
+                    string SelectTxt = "SELECT TOP 100 POSTimestamp as DatoTid, CustomerNumber as Medlemsnummer, Product.ProductName, Quantity as Antal, cast(UnitNetPrice as money) as Pris, cast(Quantity* UnitNetPrice as money) as Total FROM POSTransaction INNER JOIN Product ON Product.ProductNumber = POSTransaction.ProductNumber";
+
+                    if (txt_Customer.Text != "")
+                        SelectTxt = SelectTxt + " WHERE CustomerNumber=" + txt_Customer.Text;
+                    SelectTxt = SelectTxt + "  ORDER BY POSTransId Desc";
+
+                    using (SqlCommand cmd = new SqlCommand(SelectTxt, con))
+                    {
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        dt.Load(dr);
+                        con.Close();
+                    }
                 }
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("SQL Fejl -"+ex.Message);
+            }
             return dt;
 
         }

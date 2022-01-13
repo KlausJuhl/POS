@@ -71,6 +71,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_Total = new System.Windows.Forms.TextBox();
+            this.lbl_Price1 = new System.Windows.Forms.Label();
+            this.lbl_Price2 = new System.Windows.Forms.Label();
+            this.lbl_Price3 = new System.Windows.Forms.Label();
+            this.lbl_Price4 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.pnl_Toppanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Logo)).BeginInit();
             this.pnl_Bottom.SuspendLayout();
@@ -239,6 +244,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1246, 273);
             this.panel1.TabIndex = 104;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // lsv_ShoppingCart
             // 
@@ -260,6 +266,7 @@
             // ch_ProductId
             // 
             this.ch_ProductId.Text = "Varenummer";
+            this.ch_ProductId.Width = 0;
             // 
             // ch_Product
             // 
@@ -282,6 +289,11 @@
             // 
             // pnl_Product
             // 
+            this.pnl_Product.Controls.Add(this.button2);
+            this.pnl_Product.Controls.Add(this.lbl_Price4);
+            this.pnl_Product.Controls.Add(this.lbl_Price3);
+            this.pnl_Product.Controls.Add(this.lbl_Price2);
+            this.pnl_Product.Controls.Add(this.lbl_Price1);
             this.pnl_Product.Controls.Add(this.pnl_Keyboard);
             this.pnl_Product.Controls.Add(this.label2);
             this.pnl_Product.Controls.Add(this.txt_Customer);
@@ -551,6 +563,52 @@
             this.txt_Total.Size = new System.Drawing.Size(67, 27);
             this.txt_Total.TabIndex = 14;
             // 
+            // lbl_Price1
+            // 
+            this.lbl_Price1.AutoSize = true;
+            this.lbl_Price1.Location = new System.Drawing.Point(32, 171);
+            this.lbl_Price1.Name = "lbl_Price1";
+            this.lbl_Price1.Size = new System.Drawing.Size(71, 21);
+            this.lbl_Price1.TabIndex = 14;
+            this.lbl_Price1.Text = "100 DKK";
+            // 
+            // lbl_Price2
+            // 
+            this.lbl_Price2.AutoSize = true;
+            this.lbl_Price2.Location = new System.Drawing.Point(152, 171);
+            this.lbl_Price2.Name = "lbl_Price2";
+            this.lbl_Price2.Size = new System.Drawing.Size(71, 21);
+            this.lbl_Price2.TabIndex = 14;
+            this.lbl_Price2.Text = "100 DKK";
+            // 
+            // lbl_Price3
+            // 
+            this.lbl_Price3.AutoSize = true;
+            this.lbl_Price3.Location = new System.Drawing.Point(269, 171);
+            this.lbl_Price3.Name = "lbl_Price3";
+            this.lbl_Price3.Size = new System.Drawing.Size(71, 21);
+            this.lbl_Price3.TabIndex = 14;
+            this.lbl_Price3.Text = "100 DKK";
+            // 
+            // lbl_Price4
+            // 
+            this.lbl_Price4.AutoSize = true;
+            this.lbl_Price4.Location = new System.Drawing.Point(391, 171);
+            this.lbl_Price4.Name = "lbl_Price4";
+            this.lbl_Price4.Size = new System.Drawing.Size(71, 21);
+            this.lbl_Price4.TabIndex = 14;
+            this.lbl_Price4.Text = "100 DKK";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1014, 253);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(86, 43);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // POSForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -631,6 +689,11 @@
         private System.Windows.Forms.Button btn_Key5;
         private System.Windows.Forms.Button btn_Key7;
         private System.Windows.Forms.Button btn_Key4;
+        private System.Windows.Forms.Label lbl_Price4;
+        private System.Windows.Forms.Label lbl_Price3;
+        private System.Windows.Forms.Label lbl_Price2;
+        private System.Windows.Forms.Label lbl_Price1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
