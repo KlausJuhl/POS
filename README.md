@@ -14,7 +14,7 @@ The UI is made for an industrial PC with a touch screen and without any keyboard
 ## User manual
 ![POSscreen](image/POS-screen-dump1.JPG)
 
-In the input field ("Medlemsnummer") the member enters his members number and <Enter>. Use the soft keyboard on the screen. 
+In the input field ("Medlemsnummer") the member enters his members number and [Enter]. Use the soft keyboard on the screen. 
 The POS will lookup in the Economic Debtor table to verify the account. Members name is shown.
 
 Click on the products you want to purchase. The product is added to to the list and the total value is updated.
