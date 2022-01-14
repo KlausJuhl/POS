@@ -6,7 +6,7 @@ The purpose of this project has been to provide a simple way for members in a cl
 Earlier we used a tally chart to register the purchases and once in a while we manually made invoices in Economic and entered the value of the purchases.
 
 With the Self-Service POS, the purchase is booked directly to a CurrentInvoice in Economic. If there is an existing invoice the purchase is added to same invoice.
-From Economic we use BS (MasterCard Payment Services) to claim the money. 
+From Economic we use BS (MasterCard Payment Services) to claim the money on a monthly basis. 
 Since Mastercard charge by the number of invoice lines, we decided to minimize the lines and simply add the value on a single invoice line.
 
 The UI is made for an industrial PC with a touch screen and without any keyboard.
