@@ -27,7 +27,7 @@ To end the program click on the red button ("Luk") and enter the secret exit cod
 ### History
 ![History](image/POS-screen-dump2.JPG)
 
-The History page shows a list of the last 100 transactions with line details.
+The History page shows a list of the last 100 transactions with line details.<br>
 Enter a members number in order to filter the list.
 
 ## Installation
