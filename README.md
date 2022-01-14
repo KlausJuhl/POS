@@ -59,7 +59,7 @@ There is close to no help on which calls to make to it had to be reversed engine
 
 
 ```c#
-public static int POSTransaction(string Customer, String ProductPartnumber, int Qty, decimal Price, out string ErrorTxt)
+        public static int POSTransaction(string Customer, String ProductPartnumber, int Qty, decimal Price, out string ErrorTxt)
         {
             string OtherRef = "POS";  // Invoice otherref used by the POS aplication
             ErrorTxt = "";
