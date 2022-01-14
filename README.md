@@ -12,6 +12,7 @@ Since Mastercard charge by the number of invoice lines, we decided to minimize t
 The UI is made for an industrial PC with a touch screen and without any keyboard.
 
 ## User manual
+!(POS-screen-dump1.JPG)
 In input field ("Medlemsnummer") the member enters his members number and <Enter>. Use the soft keyboard on the screen. 
 The POS will lookup in the Economic Debtor table to verify the account. Members name is shown.
 
