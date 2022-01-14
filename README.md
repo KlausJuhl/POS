@@ -12,7 +12,7 @@ Since Mastercard charge by the number of invoice lines, we decided to minimize t
 The UI is made for an industrial PC with a touch screen and without any keyboard.
 
 ## User manual
-![POSscreen](POS-screen-dump1.JPG)
+![POSscreen](image\POS-screen-dump1.JPG)
 In input field ("Medlemsnummer") the member enters his members number and <Enter>. Use the soft keyboard on the screen. 
 The POS will lookup in the Economic Debtor table to verify the account. Members name is shown.
 
@@ -20,7 +20,7 @@ Click on the products you want to purchase. The product is added to to the list 
 When you are done press Purchase ("Køb") and the transaction is comitted to Economic.
 The screen is cleared and the system is ready for the next customer.
 
-![POSscreen](POS-screen-dump2.JPG)
+![POSscreen](image\POS-screen-dump2.JPG)
 To see old transactions press the History button ("Historik"). Is will show a list of the last 100 transactions with line details.
 Enter a members number in order to filter the list.
 
