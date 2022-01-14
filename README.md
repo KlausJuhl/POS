@@ -21,12 +21,14 @@ Click on the products you want to purchase. The product is added to to the list 
 When you are done press Purchase ("Køb") and the transaction is comitted to Economic.
 The screen is cleared and the system is ready for the next customer.
 
+To see old transactions press the History button ("Historik"). 
+To end the program click on the red button ("Luk") and enter the secret exit code (requires a keyboard) or enter the exit code in the members number.
+
+### History
 ![History](image/POS-screen-dump2.JPG)
 
-To see old transactions press the History button ("Historik"). Is will show a list of the last 100 transactions with line details.
+The History page shows a list of the last 100 transactions with line details.
 Enter a members number in order to filter the list.
-
-To end the program click on the red button ("Luk") and enter the secret exit code (requires a keyboard) or enter the exit code in the members number.
 
 ## Installation
 * Copy the files to Program files\POS 
