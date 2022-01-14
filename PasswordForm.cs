@@ -40,5 +40,10 @@ namespace POS
                 txt_Password.Focus();
             }
         }
+
+        private void txt_Password_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

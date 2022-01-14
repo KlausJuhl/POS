@@ -24,8 +24,10 @@ namespace POS
             {
                 dgv_POSTransaction.DataSource = getPOSTransaction();
                 dgv_POSTransaction.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                dgv_POSTransaction.Columns[3].Width = 60;
                 dgv_POSTransaction.Columns[4].DefaultCellStyle.Format = "0.00##";
                 dgv_POSTransaction.Columns[5].DefaultCellStyle.Format = "0.00##";
+
             }
             catch 
             { 
@@ -149,6 +151,12 @@ namespace POS
             txt_Customer.Text = "";
             dgv_POSTransaction.DataSource = getPOSTransaction();
             txt_Customer.Focus();
+
+        }
+
+        private void btn_Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
 
         }
     }

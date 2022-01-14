@@ -47,6 +47,7 @@
             this.btn_Key2 = new System.Windows.Forms.Button();
             this.btn_Key1 = new System.Windows.Forms.Button();
             this.btn_Clear = new System.Windows.Forms.Button();
+            this.btn_Close = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_POSTransaction)).BeginInit();
             this.pnl_Keyboard.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +58,7 @@
             this.dgv_POSTransaction.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -72,11 +73,11 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv_POSTransaction.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv_POSTransaction.Location = new System.Drawing.Point(12, 301);
+            this.dgv_POSTransaction.Location = new System.Drawing.Point(12, 80);
             this.dgv_POSTransaction.Name = "dgv_POSTransaction";
             this.dgv_POSTransaction.ReadOnly = true;
             this.dgv_POSTransaction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_POSTransaction.Size = new System.Drawing.Size(704, 467);
+            this.dgv_POSTransaction.Size = new System.Drawing.Size(548, 476);
             this.dgv_POSTransaction.TabIndex = 3;
             // 
             // txt_Customer
@@ -124,7 +125,7 @@
             this.pnl_Keyboard.Controls.Add(this.btn_Key4);
             this.pnl_Keyboard.Controls.Add(this.btn_Key2);
             this.pnl_Keyboard.Controls.Add(this.btn_Key1);
-            this.pnl_Keyboard.Location = new System.Drawing.Point(494, 12);
+            this.pnl_Keyboard.Location = new System.Drawing.Point(566, 80);
             this.pnl_Keyboard.Name = "pnl_Keyboard";
             this.pnl_Keyboard.Size = new System.Drawing.Size(222, 283);
             this.pnl_Keyboard.TabIndex = 14;
@@ -276,7 +277,7 @@
             // 
             this.btn_Clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Clear.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.btn_Clear.Location = new System.Drawing.Point(336, 65);
+            this.btn_Clear.Location = new System.Drawing.Point(417, 25);
             this.btn_Clear.Name = "btn_Clear";
             this.btn_Clear.Size = new System.Drawing.Size(75, 34);
             this.btn_Clear.TabIndex = 2;
@@ -284,19 +285,37 @@
             this.btn_Clear.UseVisualStyleBackColor = true;
             this.btn_Clear.Click += new System.EventHandler(this.btn_Clear_Click);
             // 
+            // btn_Close
+            // 
+            this.btn_Close.BackColor = System.Drawing.Color.Red;
+            this.btn_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Close.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Close.ForeColor = System.Drawing.Color.White;
+            this.btn_Close.Location = new System.Drawing.Point(665, 508);
+            this.btn_Close.Name = "btn_Close";
+            this.btn_Close.Size = new System.Drawing.Size(123, 48);
+            this.btn_Close.TabIndex = 15;
+            this.btn_Close.Text = "Luk";
+            this.btn_Close.UseVisualStyleBackColor = false;
+            this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
+            // 
             // HistoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 780);
+            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.btn_Close);
             this.Controls.Add(this.pnl_Keyboard);
             this.Controls.Add(this.btn_Clear);
             this.Controls.Add(this.btn_Search);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txt_Customer);
             this.Controls.Add(this.dgv_POSTransaction);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "HistoryForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Købs historik";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.HistoryForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_POSTransaction)).EndInit();
             this.pnl_Keyboard.ResumeLayout(false);
@@ -324,5 +343,6 @@
         private System.Windows.Forms.Button btn_Key2;
         private System.Windows.Forms.Button btn_Key1;
         private System.Windows.Forms.Button btn_Clear;
+        private System.Windows.Forms.Button btn_Close;
     }
 }

@@ -50,6 +50,11 @@
             this.ch_Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ch_Total = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnl_Product = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.lbl_Price4 = new System.Windows.Forms.Label();
+            this.lbl_Price3 = new System.Windows.Forms.Label();
+            this.lbl_Price2 = new System.Windows.Forms.Label();
+            this.lbl_Price1 = new System.Windows.Forms.Label();
             this.pnl_Keyboard = new System.Windows.Forms.Panel();
             this.btn_Enter = new System.Windows.Forms.Button();
             this.btn_Key9 = new System.Windows.Forms.Button();
@@ -68,14 +73,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnl_Total = new System.Windows.Forms.Panel();
             this.btn_Cancel = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_Total = new System.Windows.Forms.TextBox();
-            this.lbl_Price1 = new System.Windows.Forms.Label();
-            this.lbl_Price2 = new System.Windows.Forms.Label();
-            this.lbl_Price3 = new System.Windows.Forms.Label();
-            this.lbl_Price4 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.pnl_Toppanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Logo)).BeginInit();
             this.pnl_Bottom.SuspendLayout();
@@ -104,16 +103,17 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(17, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(206, 21);
+            this.label2.Size = new System.Drawing.Size(145, 21);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Indtast medlemsnummer";
+            this.label2.Text = "Medlemsnummer";
             // 
             // btn_Purchase
             // 
-            this.btn_Purchase.Location = new System.Drawing.Point(494, 3);
+            this.btn_Purchase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Purchase.Location = new System.Drawing.Point(528, 6);
             this.btn_Purchase.Name = "btn_Purchase";
-            this.btn_Purchase.Size = new System.Drawing.Size(127, 56);
-            this.btn_Purchase.TabIndex = 99;
+            this.btn_Purchase.Size = new System.Drawing.Size(127, 45);
+            this.btn_Purchase.TabIndex = 5;
             this.btn_Purchase.Text = "Køb";
             this.btn_Purchase.UseVisualStyleBackColor = true;
             this.btn_Purchase.Click += new System.EventHandler(this.btn_Purchase_Click);
@@ -123,7 +123,7 @@
             this.txt_Customer.Location = new System.Drawing.Point(21, 37);
             this.txt_Customer.Name = "txt_Customer";
             this.txt_Customer.Size = new System.Drawing.Size(117, 27);
-            this.txt_Customer.TabIndex = 0;
+            this.txt_Customer.TabIndex = 1;
             this.txt_Customer.TextChanged += new System.EventHandler(this.txt_Customer_TextChanged);
             this.txt_Customer.Enter += new System.EventHandler(this.txt_Customer_Enter);
             this.txt_Customer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Customer_KeyDown);
@@ -131,10 +131,10 @@
             // 
             // txt_Name
             // 
-            this.txt_Name.Location = new System.Drawing.Point(273, 37);
+            this.txt_Name.Location = new System.Drawing.Point(172, 37);
             this.txt_Name.Name = "txt_Name";
             this.txt_Name.ReadOnly = true;
-            this.txt_Name.Size = new System.Drawing.Size(396, 27);
+            this.txt_Name.Size = new System.Drawing.Size(388, 27);
             this.txt_Name.TabIndex = 11;
             this.txt_Name.TabStop = false;
             this.txt_Name.TextChanged += new System.EventHandler(this.txt_Name_TextChanged);
@@ -142,7 +142,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(269, 13);
+            this.label5.Location = new System.Drawing.Point(168, 13);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 21);
             this.label5.TabIndex = 4;
@@ -158,17 +158,17 @@
             this.pnl_Toppanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_Toppanel.Location = new System.Drawing.Point(0, 0);
             this.pnl_Toppanel.Name = "pnl_Toppanel";
-            this.pnl_Toppanel.Size = new System.Drawing.Size(1246, 64);
+            this.pnl_Toppanel.Size = new System.Drawing.Size(800, 64);
             this.pnl_Toppanel.TabIndex = 100;
             this.pnl_Toppanel.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Toppanel_Paint);
             // 
             // btn_History
             // 
             this.btn_History.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_History.Location = new System.Drawing.Point(735, 12);
+            this.btn_History.Location = new System.Drawing.Point(639, 12);
             this.btn_History.Name = "btn_History";
             this.btn_History.Size = new System.Drawing.Size(88, 33);
-            this.btn_History.TabIndex = 101;
+            this.btn_History.TabIndex = 2;
             this.btn_History.Text = "Historik";
             this.btn_History.UseVisualStyleBackColor = true;
             this.btn_History.Click += new System.EventHandler(this.btn_History_Click);
@@ -188,10 +188,10 @@
             this.btn_Close.BackColor = System.Drawing.Color.Red;
             this.btn_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Close.ForeColor = System.Drawing.Color.White;
-            this.btn_Close.Location = new System.Drawing.Point(840, 12);
+            this.btn_Close.Location = new System.Drawing.Point(733, 12);
             this.btn_Close.Name = "btn_Close";
             this.btn_Close.Size = new System.Drawing.Size(55, 33);
-            this.btn_Close.TabIndex = 2;
+            this.btn_Close.TabIndex = 3;
             this.btn_Close.Text = "Luk";
             this.btn_Close.UseVisualStyleBackColor = false;
             this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
@@ -211,15 +211,15 @@
             this.pnl_Bottom.BackColor = System.Drawing.Color.White;
             this.pnl_Bottom.Controls.Add(this.lbl_LastPurchase);
             this.pnl_Bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_Bottom.Location = new System.Drawing.Point(0, 719);
+            this.pnl_Bottom.Location = new System.Drawing.Point(0, 573);
             this.pnl_Bottom.Name = "pnl_Bottom";
-            this.pnl_Bottom.Size = new System.Drawing.Size(1246, 39);
+            this.pnl_Bottom.Size = new System.Drawing.Size(800, 27);
             this.pnl_Bottom.TabIndex = 101;
             // 
             // lbl_LastPurchase
             // 
             this.lbl_LastPurchase.AutoSize = true;
-            this.lbl_LastPurchase.Location = new System.Drawing.Point(12, 9);
+            this.lbl_LastPurchase.Location = new System.Drawing.Point(4, 3);
             this.lbl_LastPurchase.Name = "lbl_LastPurchase";
             this.lbl_LastPurchase.Size = new System.Drawing.Size(137, 21);
             this.lbl_LastPurchase.TabIndex = 0;
@@ -233,16 +233,16 @@
             this.pnl_Customer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Customer.Location = new System.Drawing.Point(0, 64);
             this.pnl_Customer.Name = "pnl_Customer";
-            this.pnl_Customer.Size = new System.Drawing.Size(1246, 655);
+            this.pnl_Customer.Size = new System.Drawing.Size(800, 509);
             this.pnl_Customer.TabIndex = 102;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.lsv_ShoppingCart);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 320);
+            this.panel1.Location = new System.Drawing.Point(0, 296);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1246, 273);
+            this.panel1.Size = new System.Drawing.Size(800, 157);
             this.panel1.TabIndex = 104;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -254,11 +254,13 @@
             this.ch_Qty,
             this.ch_Price,
             this.ch_Total});
+            this.lsv_ShoppingCart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsv_ShoppingCart.HideSelection = false;
-            this.lsv_ShoppingCart.Location = new System.Drawing.Point(3, 45);
+            this.lsv_ShoppingCart.Location = new System.Drawing.Point(0, 0);
             this.lsv_ShoppingCart.Name = "lsv_ShoppingCart";
-            this.lsv_ShoppingCart.Size = new System.Drawing.Size(1246, 190);
+            this.lsv_ShoppingCart.Size = new System.Drawing.Size(800, 157);
             this.lsv_ShoppingCart.TabIndex = 13;
+            this.lsv_ShoppingCart.TabStop = false;
             this.lsv_ShoppingCart.UseCompatibleStateImageBehavior = false;
             this.lsv_ShoppingCart.View = System.Windows.Forms.View.Details;
             this.lsv_ShoppingCart.SelectedIndexChanged += new System.EventHandler(this.lsv_ShoppingCart_SelectedIndexChanged);
@@ -306,9 +308,55 @@
             this.pnl_Product.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_Product.Location = new System.Drawing.Point(0, 0);
             this.pnl_Product.Name = "pnl_Product";
-            this.pnl_Product.Size = new System.Drawing.Size(1246, 320);
+            this.pnl_Product.Size = new System.Drawing.Size(800, 296);
             this.pnl_Product.TabIndex = 103;
             this.pnl_Product.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Product_Paint);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1014, 253);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(86, 43);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // lbl_Price4
+            // 
+            this.lbl_Price4.AutoSize = true;
+            this.lbl_Price4.Location = new System.Drawing.Point(452, 206);
+            this.lbl_Price4.Name = "lbl_Price4";
+            this.lbl_Price4.Size = new System.Drawing.Size(71, 21);
+            this.lbl_Price4.TabIndex = 14;
+            this.lbl_Price4.Text = "100 DKK";
+            // 
+            // lbl_Price3
+            // 
+            this.lbl_Price3.AutoSize = true;
+            this.lbl_Price3.Location = new System.Drawing.Point(317, 206);
+            this.lbl_Price3.Name = "lbl_Price3";
+            this.lbl_Price3.Size = new System.Drawing.Size(71, 21);
+            this.lbl_Price3.TabIndex = 14;
+            this.lbl_Price3.Text = "100 DKK";
+            // 
+            // lbl_Price2
+            // 
+            this.lbl_Price2.AutoSize = true;
+            this.lbl_Price2.Location = new System.Drawing.Point(187, 206);
+            this.lbl_Price2.Name = "lbl_Price2";
+            this.lbl_Price2.Size = new System.Drawing.Size(71, 21);
+            this.lbl_Price2.TabIndex = 14;
+            this.lbl_Price2.Text = "100 DKK";
+            // 
+            // lbl_Price1
+            // 
+            this.lbl_Price1.AutoSize = true;
+            this.lbl_Price1.Location = new System.Drawing.Point(50, 206);
+            this.lbl_Price1.Name = "lbl_Price1";
+            this.lbl_Price1.Size = new System.Drawing.Size(71, 21);
+            this.lbl_Price1.TabIndex = 14;
+            this.lbl_Price1.Text = "100 DKK";
             // 
             // pnl_Keyboard
             // 
@@ -323,7 +371,7 @@
             this.pnl_Keyboard.Controls.Add(this.btn_Key4);
             this.pnl_Keyboard.Controls.Add(this.btn_Key2);
             this.pnl_Keyboard.Controls.Add(this.btn_Key1);
-            this.pnl_Keyboard.Location = new System.Drawing.Point(735, 13);
+            this.pnl_Keyboard.Location = new System.Drawing.Point(566, 6);
             this.pnl_Keyboard.Name = "pnl_Keyboard";
             this.pnl_Keyboard.Size = new System.Drawing.Size(222, 283);
             this.pnl_Keyboard.TabIndex = 13;
@@ -336,7 +384,8 @@
             this.btn_Enter.Location = new System.Drawing.Point(81, 213);
             this.btn_Enter.Name = "btn_Enter";
             this.btn_Enter.Size = new System.Drawing.Size(126, 60);
-            this.btn_Enter.TabIndex = 0;
+            this.btn_Enter.TabIndex = 20;
+            this.btn_Enter.TabStop = false;
             this.btn_Enter.Text = "Enter";
             this.btn_Enter.UseVisualStyleBackColor = true;
             this.btn_Enter.Click += new System.EventHandler(this.btn_Key1_Click);
@@ -349,7 +398,8 @@
             this.btn_Key9.Location = new System.Drawing.Point(147, 147);
             this.btn_Key9.Name = "btn_Key9";
             this.btn_Key9.Size = new System.Drawing.Size(60, 60);
-            this.btn_Key9.TabIndex = 0;
+            this.btn_Key9.TabIndex = 18;
+            this.btn_Key9.TabStop = false;
             this.btn_Key9.Text = "9";
             this.btn_Key9.UseVisualStyleBackColor = true;
             this.btn_Key9.Click += new System.EventHandler(this.btn_Key1_Click);
@@ -362,7 +412,8 @@
             this.btn_Key8.Location = new System.Drawing.Point(81, 147);
             this.btn_Key8.Name = "btn_Key8";
             this.btn_Key8.Size = new System.Drawing.Size(60, 60);
-            this.btn_Key8.TabIndex = 0;
+            this.btn_Key8.TabIndex = 17;
+            this.btn_Key8.TabStop = false;
             this.btn_Key8.Text = "8";
             this.btn_Key8.UseVisualStyleBackColor = true;
             this.btn_Key8.Click += new System.EventHandler(this.btn_Key1_Click);
@@ -375,7 +426,8 @@
             this.btn_Key6.Location = new System.Drawing.Point(147, 81);
             this.btn_Key6.Name = "btn_Key6";
             this.btn_Key6.Size = new System.Drawing.Size(60, 60);
-            this.btn_Key6.TabIndex = 0;
+            this.btn_Key6.TabIndex = 15;
+            this.btn_Key6.TabStop = false;
             this.btn_Key6.Text = "6";
             this.btn_Key6.UseVisualStyleBackColor = true;
             this.btn_Key6.Click += new System.EventHandler(this.btn_Key1_Click);
@@ -388,7 +440,8 @@
             this.btn_Key0.Location = new System.Drawing.Point(15, 213);
             this.btn_Key0.Name = "btn_Key0";
             this.btn_Key0.Size = new System.Drawing.Size(60, 60);
-            this.btn_Key0.TabIndex = 0;
+            this.btn_Key0.TabIndex = 19;
+            this.btn_Key0.TabStop = false;
             this.btn_Key0.Text = "0";
             this.btn_Key0.UseVisualStyleBackColor = true;
             this.btn_Key0.Click += new System.EventHandler(this.btn_Key1_Click);
@@ -401,7 +454,8 @@
             this.btn_Key5.Location = new System.Drawing.Point(81, 81);
             this.btn_Key5.Name = "btn_Key5";
             this.btn_Key5.Size = new System.Drawing.Size(60, 60);
-            this.btn_Key5.TabIndex = 0;
+            this.btn_Key5.TabIndex = 14;
+            this.btn_Key5.TabStop = false;
             this.btn_Key5.Text = "5";
             this.btn_Key5.UseVisualStyleBackColor = true;
             this.btn_Key5.Click += new System.EventHandler(this.btn_Key1_Click);
@@ -414,7 +468,8 @@
             this.btn_Key7.Location = new System.Drawing.Point(15, 147);
             this.btn_Key7.Name = "btn_Key7";
             this.btn_Key7.Size = new System.Drawing.Size(60, 60);
-            this.btn_Key7.TabIndex = 0;
+            this.btn_Key7.TabIndex = 16;
+            this.btn_Key7.TabStop = false;
             this.btn_Key7.Text = "7";
             this.btn_Key7.UseVisualStyleBackColor = true;
             this.btn_Key7.Click += new System.EventHandler(this.btn_Key1_Click);
@@ -427,7 +482,8 @@
             this.btn_Key3.Location = new System.Drawing.Point(147, 15);
             this.btn_Key3.Name = "btn_Key3";
             this.btn_Key3.Size = new System.Drawing.Size(60, 60);
-            this.btn_Key3.TabIndex = 0;
+            this.btn_Key3.TabIndex = 12;
+            this.btn_Key3.TabStop = false;
             this.btn_Key3.Text = "3";
             this.btn_Key3.UseVisualStyleBackColor = true;
             this.btn_Key3.Click += new System.EventHandler(this.btn_Key1_Click);
@@ -440,7 +496,8 @@
             this.btn_Key4.Location = new System.Drawing.Point(15, 81);
             this.btn_Key4.Name = "btn_Key4";
             this.btn_Key4.Size = new System.Drawing.Size(60, 60);
-            this.btn_Key4.TabIndex = 0;
+            this.btn_Key4.TabIndex = 13;
+            this.btn_Key4.TabStop = false;
             this.btn_Key4.Text = "4";
             this.btn_Key4.UseVisualStyleBackColor = true;
             this.btn_Key4.Click += new System.EventHandler(this.btn_Key1_Click);
@@ -453,7 +510,8 @@
             this.btn_Key2.Location = new System.Drawing.Point(81, 15);
             this.btn_Key2.Name = "btn_Key2";
             this.btn_Key2.Size = new System.Drawing.Size(60, 60);
-            this.btn_Key2.TabIndex = 0;
+            this.btn_Key2.TabIndex = 11;
+            this.btn_Key2.TabStop = false;
             this.btn_Key2.Text = "2";
             this.btn_Key2.UseVisualStyleBackColor = true;
             this.btn_Key2.Click += new System.EventHandler(this.btn_Key1_Click);
@@ -466,16 +524,17 @@
             this.btn_Key1.Location = new System.Drawing.Point(15, 15);
             this.btn_Key1.Name = "btn_Key1";
             this.btn_Key1.Size = new System.Drawing.Size(60, 60);
-            this.btn_Key1.TabIndex = 0;
+            this.btn_Key1.TabIndex = 10;
+            this.btn_Key1.TabStop = false;
             this.btn_Key1.Text = "1";
             this.btn_Key1.UseVisualStyleBackColor = true;
             this.btn_Key1.Click += new System.EventHandler(this.btn_Key1_Click);
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(378, 75);
+            this.pictureBox4.Location = new System.Drawing.Point(423, 75);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(100, 93);
+            this.pictureBox4.Size = new System.Drawing.Size(128, 128);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 12;
             this.pictureBox4.TabStop = false;
@@ -483,9 +542,9 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(257, 75);
+            this.pictureBox3.Location = new System.Drawing.Point(289, 75);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(100, 93);
+            this.pictureBox3.Size = new System.Drawing.Size(128, 128);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 12;
             this.pictureBox3.TabStop = false;
@@ -493,9 +552,9 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(140, 75);
+            this.pictureBox2.Location = new System.Drawing.Point(155, 75);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(100, 93);
+            this.pictureBox2.Size = new System.Drawing.Size(128, 128);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 12;
             this.pictureBox2.TabStop = false;
@@ -505,7 +564,7 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(21, 75);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 93);
+            this.pictureBox1.Size = new System.Drawing.Size(128, 128);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
@@ -514,105 +573,49 @@
             // pnl_Total
             // 
             this.pnl_Total.Controls.Add(this.btn_Cancel);
-            this.pnl_Total.Controls.Add(this.button1);
             this.pnl_Total.Controls.Add(this.btn_Purchase);
             this.pnl_Total.Controls.Add(this.label1);
             this.pnl_Total.Controls.Add(this.txt_Total);
             this.pnl_Total.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_Total.Location = new System.Drawing.Point(0, 593);
+            this.pnl_Total.Location = new System.Drawing.Point(0, 453);
             this.pnl_Total.Name = "pnl_Total";
-            this.pnl_Total.Size = new System.Drawing.Size(1246, 62);
+            this.pnl_Total.Size = new System.Drawing.Size(800, 56);
             this.pnl_Total.TabIndex = 102;
             // 
             // btn_Cancel
             // 
             this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Cancel.Location = new System.Drawing.Point(627, 3);
+            this.btn_Cancel.Location = new System.Drawing.Point(661, 6);
             this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(127, 56);
-            this.btn_Cancel.TabIndex = 101;
+            this.btn_Cancel.Size = new System.Drawing.Size(127, 45);
+            this.btn_Cancel.TabIndex = 6;
             this.btn_Cancel.Text = "Fortryd";
             this.btn_Cancel.UseVisualStyleBackColor = true;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
-            // button1
-            // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(494, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(127, 56);
-            this.button1.TabIndex = 99;
-            this.button1.Text = "Køb";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btn_Purchase_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(221, 17);
+            this.label1.Location = new System.Drawing.Point(127, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 21);
             this.label1.TabIndex = 100;
             this.label1.Text = "Total";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txt_Total
             // 
-            this.txt_Total.Location = new System.Drawing.Point(290, 14);
+            this.txt_Total.Location = new System.Drawing.Point(182, 14);
             this.txt_Total.Name = "txt_Total";
             this.txt_Total.ReadOnly = true;
             this.txt_Total.Size = new System.Drawing.Size(67, 27);
             this.txt_Total.TabIndex = 14;
-            // 
-            // lbl_Price1
-            // 
-            this.lbl_Price1.AutoSize = true;
-            this.lbl_Price1.Location = new System.Drawing.Point(32, 171);
-            this.lbl_Price1.Name = "lbl_Price1";
-            this.lbl_Price1.Size = new System.Drawing.Size(71, 21);
-            this.lbl_Price1.TabIndex = 14;
-            this.lbl_Price1.Text = "100 DKK";
-            // 
-            // lbl_Price2
-            // 
-            this.lbl_Price2.AutoSize = true;
-            this.lbl_Price2.Location = new System.Drawing.Point(152, 171);
-            this.lbl_Price2.Name = "lbl_Price2";
-            this.lbl_Price2.Size = new System.Drawing.Size(71, 21);
-            this.lbl_Price2.TabIndex = 14;
-            this.lbl_Price2.Text = "100 DKK";
-            // 
-            // lbl_Price3
-            // 
-            this.lbl_Price3.AutoSize = true;
-            this.lbl_Price3.Location = new System.Drawing.Point(269, 171);
-            this.lbl_Price3.Name = "lbl_Price3";
-            this.lbl_Price3.Size = new System.Drawing.Size(71, 21);
-            this.lbl_Price3.TabIndex = 14;
-            this.lbl_Price3.Text = "100 DKK";
-            // 
-            // lbl_Price4
-            // 
-            this.lbl_Price4.AutoSize = true;
-            this.lbl_Price4.Location = new System.Drawing.Point(391, 171);
-            this.lbl_Price4.Name = "lbl_Price4";
-            this.lbl_Price4.Size = new System.Drawing.Size(71, 21);
-            this.lbl_Price4.TabIndex = 14;
-            this.lbl_Price4.Text = "100 DKK";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(1014, 253);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(86, 43);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.txt_Total.TabStop = false;
             // 
             // POSForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1246, 758);
+            this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.pnl_Customer);
             this.Controls.Add(this.pnl_Bottom);
             this.Controls.Add(this.pnl_Toppanel);
@@ -621,8 +624,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "POSForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.pnl_Toppanel.ResumeLayout(false);
             this.pnl_Toppanel.PerformLayout();
@@ -673,7 +676,6 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lbl_Header;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.Button btn_History;
         private System.Windows.Forms.ColumnHeader ch_ProductId;

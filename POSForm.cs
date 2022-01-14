@@ -158,10 +158,13 @@ namespace POS
             // Load products
             LoadProducts();
 
-            
+            lsv_ShoppingCart.Columns[0].Width = 0;
+            lsv_ShoppingCart.Columns[1].Width = 120;
+
+
             lbl_LastPurchase.Text = "";
             
-            txt_Customer.Focus();
+            this.ActiveControl = txt_Customer;
         }
         private void txt_Customer_TextChanged(object sender, EventArgs e)
         {
@@ -292,10 +295,11 @@ namespace POS
                 listItem.SubItems.Add(price.ToString("F")); //Total
                 lsv_ShoppingCart.Items.Add(listItem);
 
-                lsv_ShoppingCart.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-
             }
-            
+            //lsv_ShoppingCart.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            lsv_ShoppingCart.Columns[0].Width = 0;
+            lsv_ShoppingCart.Columns[1].Width = 120;
+
             if (!float.TryParse(txt_Total.Text, out float Total))
             { 
                 Total = 0;
@@ -310,12 +314,12 @@ namespace POS
         private void btn_Close_Click(object sender, EventArgs e)
         {
             // Display the password form.
-            /*
+            
             PasswordForm frm = new PasswordForm();
             if (frm.ShowDialog() == DialogResult.OK)
-            {*/
+            {
                 Application.Exit();
-            //}
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -661,59 +665,70 @@ namespace POS
         }
         private void LoadProducts()
         {
-        
-            var Products = new DataTable();
-            using (var da = new SqlDataAdapter("SELECT * FROM Product", connetionString))
+            try
             {
-                da.Fill(Products);
-            }
-
-            pictureBox1.ImageLocation = "";
-            pictureBox2.ImageLocation = "";
-            pictureBox3.ImageLocation = "";
-            pictureBox4.ImageLocation = "";
-
-            lbl_Price1.Text = "";
-            lbl_Price2.Text = "";
-            lbl_Price3.Text = "";
-            lbl_Price4.Text = "";
-
-
-            for (int i = 0; i < Products.Rows.Count; i++)
-            {
-                
-                if (!float.TryParse(Products.Rows[i]["Price"].ToString(), out float Price))
-                    Price = 0;
-                
-                ProductArr[i].ProductNumber = Products.Rows[i]["ProductNumber"].ToString();
-                ProductArr[i].ProductName = Products.Rows[i]["ProductName"].ToString();
-                ProductArr[i].Price = Price;
-                ProductArr[i].ImageFileName = Products.Rows[i]["ImageFileName"].ToString();
-
-                switch (i)
+                var Products = new DataTable();
+                using (var da = new SqlDataAdapter("SELECT * FROM Product", connetionString))
                 {
-                    case 0:
-                        lbl_Price1.Text = Price.ToString("F") + " DKK"; ;
-                        pictureBox1.ImageLocation = ProductPath + ProductArr[i].ImageFileName;
-
-                        break;
-                    case 1:
-                        lbl_Price2.Text = Price.ToString("F") + " DKK"; ;
-                        pictureBox2.ImageLocation = ProductPath + ProductArr[i].ImageFileName;
-                        break;
-                    case 2:
-                        lbl_Price3.Text = Price.ToString("F") + " DKK"; ;
-                        pictureBox3.ImageLocation = ProductPath + ProductArr[i].ImageFileName;
-                        break;
-                    case 3:
-                        lbl_Price4.Text = Price.ToString("F") + " DKK"; ;
-                        pictureBox4.ImageLocation = ProductPath + ProductArr[i].ImageFileName;
-                        break;
-
+                    da.Fill(Products);
                 }
 
+                pictureBox1.ImageLocation = "";
+                pictureBox2.ImageLocation = "";
+                pictureBox3.ImageLocation = "";
+                pictureBox4.ImageLocation = "";
+
+                lbl_Price1.Text = "";
+                lbl_Price2.Text = "";
+                lbl_Price3.Text = "";
+                lbl_Price4.Text = "";
+
+
+                for (int i = 0; i < Products.Rows.Count; i++)
+                {
+
+                    if (!float.TryParse(Products.Rows[i]["Price"].ToString(), out float Price))
+                        Price = 0;
+
+                    ProductArr[i].ProductNumber = Products.Rows[i]["ProductNumber"].ToString();
+                    ProductArr[i].ProductName = Products.Rows[i]["ProductName"].ToString();
+                    ProductArr[i].Price = Price;
+                    ProductArr[i].ImageFileName = Products.Rows[i]["ImageFileName"].ToString();
+
+                    switch (i)
+                    {
+                        case 0:
+                            lbl_Price1.Text = Price.ToString("F") + " DKK"; ;
+                            pictureBox1.ImageLocation = ProductPath + ProductArr[i].ImageFileName;
+
+                            break;
+                        case 1:
+                            lbl_Price2.Text = Price.ToString("F") + " DKK"; ;
+                            pictureBox2.ImageLocation = ProductPath + ProductArr[i].ImageFileName;
+                            break;
+                        case 2:
+                            lbl_Price3.Text = Price.ToString("F") + " DKK"; ;
+                            pictureBox3.ImageLocation = ProductPath + ProductArr[i].ImageFileName;
+                            break;
+                        case 3:
+                            lbl_Price4.Text = Price.ToString("F") + " DKK"; ;
+                            pictureBox4.ImageLocation = ProductPath + ProductArr[i].ImageFileName;
+                            break;
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("SQL Fejl: " + ex.Message);
+
             }
 
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
     }
