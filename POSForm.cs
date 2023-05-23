@@ -8,23 +8,23 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
-using POS.econSoap;
 
 namespace POS
 {
-    
 
     public partial class POSForm : Form
     {
         public string LogoPath { get; private set; }
         public string CashRegSoundPath { get; private set; }
         public string ProductPath { get; private set; }
-        public string connetionString { get; private set; }
+        public string connectionString { get; private set; }
         public static string EconAgreementGrantToken { get; private set; }
         public static string EconAppSecretToken { get; private set; }
         public string Exitcode { get; private set; }
+        public Thread thr { get; private set; }
+
         struct product
         {
             public string ProductNumber;
@@ -90,7 +90,7 @@ namespace POS
 
             // Insert/Update Invoice in Economic
             string txt;
-            if (POSTransaction(txt_Customer.Text, "Kantine", 1, Total, out txt) != 0)
+            if (POSTransaction(txt_Customer.Text, "8000", 1, Total, out txt) != 0)
             {
                 lbl_LastPurchase.Text = "Error in POS trans: " + txt;
                 lbl_LastPurchase.ForeColor = Color.Red;
@@ -123,6 +123,9 @@ namespace POS
                 txt_Name.Clear();
                 txt_Total.Clear();
 
+                pnl_Products.Visible = false;
+                pnl_Keyboard.Visible = true;
+
                 txt_Customer.Focus();
                 
             }
@@ -141,11 +144,11 @@ namespace POS
             EconAppSecretToken = ConfigurationManager.AppSettings["EconAppSecretToken"];
             Exitcode = ConfigurationManager.AppSettings["Exitcode"];
 
-            connetionString = System.Configuration.ConfigurationManager.ConnectionStrings["SelfServicePOS"].ConnectionString;
-
-
+            connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SelfServicePOS"].ConnectionString;
+            
             // Load logo
             pic_Logo.ImageLocation = LogoPath;
+            
 
             // Place buttons relative to window size
             btn_Close.Left = pnl_Toppanel.Left + pnl_Toppanel.Width - btn_Close.Width - 10;
@@ -163,8 +166,23 @@ namespace POS
 
 
             lbl_LastPurchase.Text = "";
-            
+
+            pnl_Products.Visible = false;
+
             this.ActiveControl = txt_Customer;
+
+            // Creating object of ExThread class
+            EconomicRESTAPIThread obj = new EconomicRESTAPIThread();
+            //EconomicThread obj = new EconomicThread();
+            
+
+            // Creating thread
+            // Using thread class
+            //Thread
+            thr = new Thread(new ThreadStart(obj.ecothread));
+            thr.Start();
+
+
         }
         private void txt_Customer_TextChanged(object sender, EventArgs e)
         {
@@ -194,6 +212,12 @@ namespace POS
                     DialogResult dialogResult = MessageBox.Show("Vil du afslutte programmet?", "Afslut", MessageBoxButtons.OKCancel);
                     if (dialogResult == DialogResult.OK)
                     {
+                        if (thr.IsAlive)
+                        {
+                            thr.Abort();
+                            // Waiting for thread to terminate.
+                            thr.Join();
+                        }
                         Application.Exit();
                     }
                     txt_Customer.Text = "";
@@ -201,50 +225,28 @@ namespace POS
                     return;
 
                 }
-                // look-up customer
-                using (var session = new EconomicWebServiceSoapClient())
+
+                
+                if (validateCustomer(txt_Customer.Text, out string Name, out string txt) !=0)
                 {
-                    // Set cursor as hourglass
-                    Cursor.Current = Cursors.WaitCursor;
-                    try
-                    {
-                        Connect(session);
-
-                        // Find Debtor
-                        DebtorHandle DebtorHandle = session.Debtor_FindByNumber(txt_Customer.Text);
-                        DebtorData DebtorData = session.Debtor_GetData(DebtorHandle);
-
-                        if (DebtorHandle is null || DebtorData is null)
-                        {
-                            lbl_LastPurchase.Text = "Medlemsnummer " + txt_Customer.Text + " ikke fundet i Economic";
-                            lbl_LastPurchase.ForeColor = Color.Red;
-                            System.Media.SystemSounds.Hand.Play();
-                            txt_Customer.Text = "";
-                            txt_Customer.Focus();
-                        }
-                        else
-                        {
-                            txt_Name.Text = DebtorData.Name;
-
-                            lbl_LastPurchase.Text = "";
-                            lbl_LastPurchase.ForeColor = Color.Black;
-                        }
-                        session.Disconnect();
-                        
-                    }
-                    catch (Exception ex)
-                    {
-                        lbl_LastPurchase.Text = "Economic Fejl - " + ex.Message;
-                        lbl_LastPurchase.ForeColor = Color.Red;
-                        System.Media.SystemSounds.Hand.Play();
-                        txt_Customer.Text = "";
-                        txt_Customer.Focus();
-
-                    }
-                    // Set cursor as default arrow
-                    Cursor.Current = Cursors.Default;
+                    lbl_LastPurchase.Text = txt;
+                    lbl_LastPurchase.ForeColor = Color.Red;
+                    System.Media.SystemSounds.Hand.Play();
+                    txt_Customer.Text = "";
+                    txt_Customer.Focus();
+                    return;
                 }
+                else
+                {
+                    txt_Name.Text = Name;
 
+                    lbl_LastPurchase.Text = "";
+                    lbl_LastPurchase.ForeColor = Color.Black;
+
+                    pnl_Products.Visible = true;
+                    pnl_Keyboard.Visible = false;
+                }
+               
                 
 
                 
@@ -269,8 +271,23 @@ namespace POS
             //int itemQty;
             ListViewItem item1 = lsv_ShoppingCart.FindItemWithText(productid);
 
+            Boolean SomethingFound = false;
+            Boolean Found = false;
+            string ProductFound = "";
             if (item1 != null)
+                SomethingFound = true;
+
+            if (SomethingFound)
             {
+                ProductFound = item1.SubItems[0].Text;
+                if (ProductFound == productid)
+                    Found = true;
+
+            }
+
+            if (Found)
+            {
+
                 // Found -> Update
                 // Qty
                 if (!int.TryParse(item1.SubItems[2].Text, out int itemQty))
@@ -282,9 +299,7 @@ namespace POS
                     itemTotal = 0;
                 itemTotal += price;
                 item1.SubItems[4].Text = itemTotal.ToString("F");
-
             }
-
             else
             {
                 // Not found -> Insert
@@ -318,6 +333,12 @@ namespace POS
             PasswordForm frm = new PasswordForm();
             if (frm.ShowDialog() == DialogResult.OK)
             {
+                if (thr.IsAlive)
+                {
+                    thr.Abort();
+                    // Waiting for thread to terminate.
+                    thr.Join();
+                }
                 Application.Exit();
             }
         }
@@ -375,6 +396,9 @@ namespace POS
             txt_Name.Clear();
             txt_Total.Clear();
 
+            pnl_Products.Visible = false;
+            pnl_Keyboard.Visible = true;
+
             txt_Customer.Focus();
         }
 
@@ -392,6 +416,9 @@ namespace POS
 
         private void btn_Key1_Click(object sender, EventArgs e)
         {
+            if (lsv_ShoppingCart.Items.Count != 0 || txt_Name.Text !="")
+                return;
+
             if (sender == btn_Key1)
             {
                 txt_Customer.Focus();
@@ -459,170 +486,14 @@ namespace POS
             //pnl_Keyboard.Visible = false;
         }
 
-        private static void Connect(EconomicWebServiceSoapClient session)
-        {
-            // A necessary setting as the session is put in a cookie
-            ((BasicHttpBinding)session.Endpoint.Binding).AllowCookies = true;
-
-            using (new OperationContextScope(session.InnerChannel))
-            {
-                session.ConnectWithToken(EconAgreementGrantToken, EconAppSecretToken);
-                
-            }
-        }
-
-        public static int POSTransaction(string Customer, String ProductPartnumber, int Qty, decimal Price, out string ErrorTxt)
-        {
-            string OtherRef = "POS";  // Invoice otherref used by the POS aplication
-            ErrorTxt = "";
-            int ErrorCode = 0;
-            
-            try
-            {
-
-                using (var session = new EconomicWebServiceSoapClient())
-                {
-                    Connect(session);
-
-                    // Find Debtor
-                    var DebtorHandle = session.Debtor_FindByNumber(Customer);
-
-                    if (DebtorHandle is null)
-                    {
-                        ErrorTxt = "Debtor not found, Number: " + Customer;
-                        session.Disconnect();
-                        return 1;
-                    }
-
-                    var ProductHandle = session.Product_FindByName(ProductPartnumber);
-                    if (ProductHandle is null)
-                    {
-                        ErrorTxt = "Product not found, PartNumber: " + ProductPartnumber;
-                        session.Disconnect();
-                        return 2;
-                    }
-
-                    // Search existing invoice for customer of OtherRef 
-                    var currentInvoiceHandles = session.CurrentInvoice_FindByOtherReference(OtherRef);
-
-                    DebtorData InvoiceDebtorData;
-                    Boolean InvoiceFound = false;
-                    Boolean InvoiceLineFound = false;
-                    DebtorHandle InvoiceDebtorHandle;
-                    CurrentInvoiceHandle currentInvoiceHandle = default;
-                    CurrentInvoiceData currentInvoiceData;
-                    CurrentInvoiceLineData currentInvoiceLineData = default;
-
-                    if (currentInvoiceHandles.Length > 0)
-                    {
-                        // Find Invoice for actual customer
-                        for (int i = 0; i < currentInvoiceHandles.Length; i++)
-                        {
-                            // next invoice
-                            currentInvoiceHandle = currentInvoiceHandles[i];
-                            currentInvoiceData = session.CurrentInvoice_GetData(currentInvoiceHandle);
-
-                            // Debtor
-                            InvoiceDebtorHandle = currentInvoiceData.DebtorHandle;
-                            InvoiceDebtorData = session.Debtor_GetData(InvoiceDebtorHandle);
-
-                            if (InvoiceDebtorData.Number == Customer)
-                            {
-                                InvoiceFound = true;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (InvoiceFound)
-                    {
-                        //CurrentInvoiceLine_FindByCurrentInvoiceList
-                        CurrentInvoiceHandle[] CurrentInvoiceHandleArray = new CurrentInvoiceHandle[1];
-                        CurrentInvoiceHandleArray[0] = currentInvoiceHandle;
-                        var CurrentInvoiceLineHandles = session.CurrentInvoiceLine_FindByCurrentInvoiceList(CurrentInvoiceHandleArray);
-
-                        // Find invoice line
-                        for (int line = 0; line < CurrentInvoiceLineHandles.Length; line++)
-                        {
-                            // next line
-                            var currentInvoiceLineHandle = CurrentInvoiceLineHandles[line];
-                            currentInvoiceLineData = session.CurrentInvoiceLine_GetData(currentInvoiceLineHandle);
-                            var InvoiceLineProductHandle = currentInvoiceLineData.ProductHandle;
-                            var ProductData = session.Product_GetData(InvoiceLineProductHandle);
-
-                            if (ProductData.Name == ProductPartnumber)
-                            {
-                                InvoiceLineFound = true;
-                                break;
-                            }
-                        }
-
-                        if (InvoiceLineFound)
-                        {
-                            //InvoiceLine found - update Price
-                            //Qty unchanged, allways = 1
-                            currentInvoiceLineData.UnitNetPrice = currentInvoiceLineData.UnitNetPrice + Price;
-                            session.CurrentInvoiceLine_UpdateFromData(currentInvoiceLineData);
-                        }
-                        else
-                        {
-                            // Add invoice line
-                            ErrorCode=AddInvoiceLine(session, currentInvoiceHandle, ProductHandle[0], ProductPartnumber, Qty, Price, out ErrorTxt);
-                        }
-                    }
-                    else
-                    {
-                        // Invoice not found - adding invoice
-                        var InvoiceHandle = session.CurrentInvoice_Create(DebtorHandle);
-
-                        // Set OtherRef = "Kantine"
-                        session.CurrentInvoice_SetOtherReference(InvoiceHandle, OtherRef);
-
-                        // Adding lines
-                        ErrorCode=AddInvoiceLine(session, InvoiceHandle, ProductHandle[0], ProductPartnumber, Qty, Price, out ErrorTxt);
-                    }
-
-                    session.Disconnect();
-                }
-                return ErrorCode;
-            }
-            catch (Exception ex)
-            {
-                ErrorTxt = "Economic Fejl - " + ex.Message;
-                return 99;
-            }
-
-        }
-
-        public static int AddInvoiceLine(EconomicWebServiceSoapClient session, CurrentInvoiceHandle InvoiceHandle, ProductHandle ProductHandle, string ProductPartnumber, int Qty, decimal Price, out string ErrorTxt)
-        {
-            try
-            {
-                CurrentInvoiceLineData Invoiceline = new CurrentInvoiceLineData();
-                Invoiceline.InvoiceHandle = InvoiceHandle;
-                Invoiceline.ProductHandle = ProductHandle;
-                Invoiceline.Description = ProductPartnumber;
-                Invoiceline.Quantity = Qty;
-                Invoiceline.UnitNetPrice = Price;
-
-                session.CurrentInvoiceLine_CreateFromData(Invoiceline);
-                ErrorTxt = "";
-                return 0;
-            }
-            catch(Exception ex)
-            {
-                ErrorTxt = "Economic Fejl - " + ex.Message;
-                return 99;
-            }
-        }
-
+        
         private int LogPOSTransactionToDB(out string ErrorTxt)
         {
             try
             {
                 // Log to database SelfServicePOS
                 SqlConnection cnn;
-                cnn = new SqlConnection(connetionString);
+                cnn = new SqlConnection(connectionString);
                 cnn.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter();
 
@@ -654,6 +525,45 @@ namespace POS
 
         }
 
+        private int POSTransaction(string Customer, String ProductPartnumber, int Qty, decimal Price, out string ErrorTxt)
+        {
+            ErrorTxt = "";
+            int ErrorCode = 0;
+
+            try
+            {
+                // Save Transaction in SQL database for later processing
+                SqlConnection cnn;
+                cnn = new SqlConnection(connectionString);
+                cnn.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+
+
+                String sql = "INSERT INTO EcoPOS (EcoPOSTimestamp, CustomerNumber, ProductNumber, Quantity, Total) values("
+                        + "getdate(),"
+                        + "'" + Customer + "'"
+                        + ",'" + ProductPartnumber + "'"
+                        + "," + Qty.ToString()  //Quantity
+                        + "," + Price.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)
+                        + ")";
+                adapter.InsertCommand = new SqlCommand(sql, cnn);
+                adapter.InsertCommand.ExecuteNonQuery();
+
+
+                cnn.Close();
+                ErrorTxt = "";
+
+                return ErrorCode;
+            }
+            catch (Exception ex)
+            {
+                ErrorTxt = "POSTransaction Fejl - " + ex.Message;
+                return 99;
+            }
+
+        }
+
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -668,7 +578,7 @@ namespace POS
             try
             {
                 var Products = new DataTable();
-                using (var da = new SqlDataAdapter("SELECT * FROM Product", connetionString))
+                using (var da = new SqlDataAdapter("SELECT * FROM Product", connectionString))
                 {
                     da.Fill(Products);
                 }
@@ -731,5 +641,109 @@ namespace POS
         {
 
         }
+        
+        private int validateCustomer(string CustomerNumber, out string Name, out string ErrorTxt)
+        {
+
+            Name = "";
+
+            // Validate Customer agaist database
+            int Err = ValidateCustomerDB(CustomerNumber, out Name, out ErrorTxt);
+
+            if (Err>0) //Database fejl
+            {
+                return Err;
+            }
+
+            if (Err < 0) //Customer not found
+            {
+                int r = EconomicCustomers.Customer.FindCustomer(CustomerNumber, out Name);
+                if (r == 0)
+                {
+                    // Insert i SQL
+                    if (SaveCustomerToDB(CustomerNumber, Name, out ErrorTxt) != 0)
+                    {
+                        return 99;
+                    }
+                }
+                
+            }
+            ErrorTxt = "";
+            return 0;
+        }
+
+        private int SaveCustomerToDB(string CustomerNumber, string CustomerName, out string ErrorTxt)
+        {
+            try
+            {
+                // Log to database SelfServicePOS
+                SqlConnection cnn;
+                cnn = new SqlConnection(connectionString);
+                cnn.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter();
+
+                String sql = "INSERT INTO Customer (CustomerNumber, CustomerName) values("
+                    + "'" + CustomerNumber + "'"
+                    + ",'" + CustomerName + "'"
+                    + ")";
+                adapter.InsertCommand = new SqlCommand(sql, cnn);
+                adapter.InsertCommand.ExecuteNonQuery();
+
+                cnn.Close();
+                ErrorTxt = "";
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                ErrorTxt = "SQL Fejl - " + ex.Message;
+                return 99;
+            }
+
+        }
+        private int ValidateCustomerDB(string CustomerNumber, out string CustomerName, out string Errortxt)
+        {
+            CustomerName = "";
+            try
+            {
+                var Customer = new DataTable();
+                string sql = "SELECT * FROM Customer WHERE CustomerNumber=" + CustomerNumber;
+                using (var da = new SqlDataAdapter(sql, connectionString))
+                {
+                    da.Fill(Customer);
+                }
+
+                if (Customer.Rows.Count==0)
+                {
+                    Errortxt = "Medlemsnummer ikke fundet i databasen";
+                    return -1; 
+                }
+                CustomerName = Customer.Rows[0]["CustomerName"].ToString();
+            }
+            catch (Exception ex)
+            {
+                Errortxt="SQL Fejl: " + ex.Message;
+                return 99;
+            }
+
+            Errortxt = "";
+            return 0;
+
+        }
+
+        private void pnl_Products_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pic_Logo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
+
+
+    
+
+
+
 }

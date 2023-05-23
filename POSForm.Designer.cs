@@ -50,11 +50,16 @@
             this.ch_Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ch_Total = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnl_Product = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.pnl_Products = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lbl_Price4 = new System.Windows.Forms.Label();
+            this.lbl_Price1 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lbl_Price3 = new System.Windows.Forms.Label();
             this.lbl_Price2 = new System.Windows.Forms.Label();
-            this.lbl_Price1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.pnl_Keyboard = new System.Windows.Forms.Panel();
             this.btn_Enter = new System.Windows.Forms.Button();
             this.btn_Key9 = new System.Windows.Forms.Button();
@@ -67,10 +72,6 @@
             this.btn_Key4 = new System.Windows.Forms.Button();
             this.btn_Key2 = new System.Windows.Forms.Button();
             this.btn_Key1 = new System.Windows.Forms.Button();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnl_Total = new System.Windows.Forms.Panel();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -81,11 +82,12 @@
             this.pnl_Customer.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnl_Product.SuspendLayout();
-            this.pnl_Keyboard.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.pnl_Products.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pnl_Keyboard.SuspendLayout();
             this.pnl_Total.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -205,15 +207,16 @@
             this.pic_Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pic_Logo.TabIndex = 1;
             this.pic_Logo.TabStop = false;
+            this.pic_Logo.Click += new System.EventHandler(this.pic_Logo_Click);
             // 
             // pnl_Bottom
             // 
             this.pnl_Bottom.BackColor = System.Drawing.Color.White;
             this.pnl_Bottom.Controls.Add(this.lbl_LastPurchase);
             this.pnl_Bottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_Bottom.Location = new System.Drawing.Point(0, 573);
+            this.pnl_Bottom.Location = new System.Drawing.Point(0, 570);
             this.pnl_Bottom.Name = "pnl_Bottom";
-            this.pnl_Bottom.Size = new System.Drawing.Size(800, 27);
+            this.pnl_Bottom.Size = new System.Drawing.Size(800, 30);
             this.pnl_Bottom.TabIndex = 101;
             // 
             // lbl_LastPurchase
@@ -233,7 +236,7 @@
             this.pnl_Customer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_Customer.Location = new System.Drawing.Point(0, 64);
             this.pnl_Customer.Name = "pnl_Customer";
-            this.pnl_Customer.Size = new System.Drawing.Size(800, 509);
+            this.pnl_Customer.Size = new System.Drawing.Size(800, 506);
             this.pnl_Customer.TabIndex = 102;
             // 
             // panel1
@@ -242,7 +245,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 296);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 157);
+            this.panel1.Size = new System.Drawing.Size(800, 154);
             this.panel1.TabIndex = 104;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -254,7 +257,6 @@
             this.ch_Qty,
             this.ch_Price,
             this.ch_Total});
-            this.lsv_ShoppingCart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsv_ShoppingCart.HideSelection = false;
             this.lsv_ShoppingCart.Location = new System.Drawing.Point(0, 0);
             this.lsv_ShoppingCart.Name = "lsv_ShoppingCart";
@@ -291,19 +293,12 @@
             // 
             // pnl_Product
             // 
+            this.pnl_Product.Controls.Add(this.pnl_Products);
             this.pnl_Product.Controls.Add(this.button2);
-            this.pnl_Product.Controls.Add(this.lbl_Price4);
-            this.pnl_Product.Controls.Add(this.lbl_Price3);
-            this.pnl_Product.Controls.Add(this.lbl_Price2);
-            this.pnl_Product.Controls.Add(this.lbl_Price1);
             this.pnl_Product.Controls.Add(this.pnl_Keyboard);
             this.pnl_Product.Controls.Add(this.label2);
             this.pnl_Product.Controls.Add(this.txt_Customer);
             this.pnl_Product.Controls.Add(this.txt_Name);
-            this.pnl_Product.Controls.Add(this.pictureBox4);
-            this.pnl_Product.Controls.Add(this.pictureBox3);
-            this.pnl_Product.Controls.Add(this.pictureBox2);
-            this.pnl_Product.Controls.Add(this.pictureBox1);
             this.pnl_Product.Controls.Add(this.label5);
             this.pnl_Product.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_Product.Location = new System.Drawing.Point(0, 0);
@@ -311,6 +306,98 @@
             this.pnl_Product.Size = new System.Drawing.Size(800, 296);
             this.pnl_Product.TabIndex = 103;
             this.pnl_Product.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Product_Paint);
+            // 
+            // pnl_Products
+            // 
+            this.pnl_Products.Controls.Add(this.pictureBox3);
+            this.pnl_Products.Controls.Add(this.lbl_Price4);
+            this.pnl_Products.Controls.Add(this.lbl_Price1);
+            this.pnl_Products.Controls.Add(this.pictureBox4);
+            this.pnl_Products.Controls.Add(this.pictureBox2);
+            this.pnl_Products.Controls.Add(this.lbl_Price3);
+            this.pnl_Products.Controls.Add(this.lbl_Price2);
+            this.pnl_Products.Controls.Add(this.pictureBox1);
+            this.pnl_Products.Location = new System.Drawing.Point(5, 70);
+            this.pnl_Products.Name = "pnl_Products";
+            this.pnl_Products.Size = new System.Drawing.Size(554, 218);
+            this.pnl_Products.TabIndex = 16;
+            this.pnl_Products.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Products_Paint);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(282, 17);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(128, 128);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 12;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // lbl_Price4
+            // 
+            this.lbl_Price4.AutoSize = true;
+            this.lbl_Price4.Location = new System.Drawing.Point(445, 148);
+            this.lbl_Price4.Name = "lbl_Price4";
+            this.lbl_Price4.Size = new System.Drawing.Size(71, 21);
+            this.lbl_Price4.TabIndex = 14;
+            this.lbl_Price4.Text = "100 DKK";
+            // 
+            // lbl_Price1
+            // 
+            this.lbl_Price1.AutoSize = true;
+            this.lbl_Price1.Location = new System.Drawing.Point(43, 148);
+            this.lbl_Price1.Name = "lbl_Price1";
+            this.lbl_Price1.Size = new System.Drawing.Size(71, 21);
+            this.lbl_Price1.TabIndex = 14;
+            this.lbl_Price1.Text = "100 DKK";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Location = new System.Drawing.Point(416, 17);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(128, 128);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 12;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(148, 17);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(128, 128);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // lbl_Price3
+            // 
+            this.lbl_Price3.AutoSize = true;
+            this.lbl_Price3.Location = new System.Drawing.Point(310, 148);
+            this.lbl_Price3.Name = "lbl_Price3";
+            this.lbl_Price3.Size = new System.Drawing.Size(71, 21);
+            this.lbl_Price3.TabIndex = 14;
+            this.lbl_Price3.Text = "100 DKK";
+            // 
+            // lbl_Price2
+            // 
+            this.lbl_Price2.AutoSize = true;
+            this.lbl_Price2.Location = new System.Drawing.Point(180, 148);
+            this.lbl_Price2.Name = "lbl_Price2";
+            this.lbl_Price2.Size = new System.Drawing.Size(71, 21);
+            this.lbl_Price2.TabIndex = 14;
+            this.lbl_Price2.Text = "100 DKK";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(14, 17);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(128, 128);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // button2
             // 
@@ -321,42 +408,6 @@
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
-            // lbl_Price4
-            // 
-            this.lbl_Price4.AutoSize = true;
-            this.lbl_Price4.Location = new System.Drawing.Point(452, 206);
-            this.lbl_Price4.Name = "lbl_Price4";
-            this.lbl_Price4.Size = new System.Drawing.Size(71, 21);
-            this.lbl_Price4.TabIndex = 14;
-            this.lbl_Price4.Text = "100 DKK";
-            // 
-            // lbl_Price3
-            // 
-            this.lbl_Price3.AutoSize = true;
-            this.lbl_Price3.Location = new System.Drawing.Point(317, 206);
-            this.lbl_Price3.Name = "lbl_Price3";
-            this.lbl_Price3.Size = new System.Drawing.Size(71, 21);
-            this.lbl_Price3.TabIndex = 14;
-            this.lbl_Price3.Text = "100 DKK";
-            // 
-            // lbl_Price2
-            // 
-            this.lbl_Price2.AutoSize = true;
-            this.lbl_Price2.Location = new System.Drawing.Point(187, 206);
-            this.lbl_Price2.Name = "lbl_Price2";
-            this.lbl_Price2.Size = new System.Drawing.Size(71, 21);
-            this.lbl_Price2.TabIndex = 14;
-            this.lbl_Price2.Text = "100 DKK";
-            // 
-            // lbl_Price1
-            // 
-            this.lbl_Price1.AutoSize = true;
-            this.lbl_Price1.Location = new System.Drawing.Point(50, 206);
-            this.lbl_Price1.Name = "lbl_Price1";
-            this.lbl_Price1.Size = new System.Drawing.Size(71, 21);
-            this.lbl_Price1.TabIndex = 14;
-            this.lbl_Price1.Text = "100 DKK";
             // 
             // pnl_Keyboard
             // 
@@ -530,46 +581,6 @@
             this.btn_Key1.UseVisualStyleBackColor = true;
             this.btn_Key1.Click += new System.EventHandler(this.btn_Key1_Click);
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Location = new System.Drawing.Point(423, 75);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(128, 128);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 12;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Location = new System.Drawing.Point(289, 75);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(128, 128);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 12;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Location = new System.Drawing.Point(155, 75);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(128, 128);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 12;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(21, 75);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(128, 128);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // pnl_Total
             // 
             this.pnl_Total.Controls.Add(this.btn_Cancel);
@@ -577,7 +588,7 @@
             this.pnl_Total.Controls.Add(this.label1);
             this.pnl_Total.Controls.Add(this.txt_Total);
             this.pnl_Total.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_Total.Location = new System.Drawing.Point(0, 453);
+            this.pnl_Total.Location = new System.Drawing.Point(0, 450);
             this.pnl_Total.Name = "pnl_Total";
             this.pnl_Total.Size = new System.Drawing.Size(800, 56);
             this.pnl_Total.TabIndex = 102;
@@ -636,11 +647,13 @@
             this.panel1.ResumeLayout(false);
             this.pnl_Product.ResumeLayout(false);
             this.pnl_Product.PerformLayout();
-            this.pnl_Keyboard.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.pnl_Products.ResumeLayout(false);
+            this.pnl_Products.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.pnl_Keyboard.ResumeLayout(false);
             this.pnl_Total.ResumeLayout(false);
             this.pnl_Total.PerformLayout();
             this.ResumeLayout(false);
@@ -696,6 +709,7 @@
         private System.Windows.Forms.Label lbl_Price2;
         private System.Windows.Forms.Label lbl_Price1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel pnl_Products;
     }
 }
 
