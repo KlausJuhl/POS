@@ -31,11 +31,11 @@ The History page shows a list of the last 100 transactions with line details.
 Enter a members number in order to filter the list.
 
 ## Installation
-* Copy the files to Program files\POS 
+* Copy the files from the Release folder to Program files\POS 
 * Create the two sub folders; images and sound, including the files
-* Install the database on a SQL Server 2019
+* Install the database on a SQL Server 2019, using the script found in the SQL Script folder
 * Create the products in the database. Key-in or use the script to create the products
-* Edit the POS.exe.config
+* Edit the POS.exe.config with your paths and API tokens 
 
 ## POS.exe.config
 In the POS.exe.config file various settings is available:
@@ -48,7 +48,7 @@ In the POS.exe.config file various settings is available:
 * ConnectionString - provide info on the SQL server that holds the POS Transactions used for the history
 
 ## Economic interface
-Dev agreement + tokens
+In order to obtain the tokens you need to register with Economic
 * [Sign up](https://www.e-conomic.com/developer)
 * [Token authentication guide](https://www.e-conomic.com/developer/connect) This explains you how to get tokens (AppSecretToken / AgreementGrantToken) and connect to the APIs.
 
